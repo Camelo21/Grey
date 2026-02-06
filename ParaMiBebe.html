@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti 💜</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #7b2cbf, #c77dff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #3a0ca3;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      background: #9d4edd;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #7b2cbf;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: purple;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <h2>Hola mi niña 💜</h2>
+    <p>Te hice algo pequeño…<br>muy a mi manera 😌</p>
+    <button onclick="next()">Empezar 🌷</button>
+  </div>
+
+  <script>
+    let step = 0;
+
+    function next() {
+      const card = document.getElementById("card");
+
+      const screens = [
+        `
+        <h2>Pregunta importante 👀</h2>
+        <p>¿Tú me amas? 💕</p>
+        <button onclick="next()">Sí 💜</button>
+        `,
+        `
+        <h2>Hmm… 🤨</h2>
+        <p>¿De verdad de verdad?<br>¿Así mucho mucho?</p>
+        <button onclick="next()">Obvio 🥰</button>
+        `,
+        `
+        <h2>Entonces escucha esto, Totito 💜</h2>
+        <p>
+          Bebé… Mi gatito…<br>
+          Tú eres una persona increíble<br>
+          y no dejo de agradecerte todos los días.
+        </p>
+        <button onclick="next()">Sigue 💌</button>
+        `,
+        `
+        <h2>Mi vida 🌷</h2>
+        <p>
+          Muchas gracias por siempre estar conmigo.<br><br>
+          Este es nuestro <b>primer Valentine</b><br>
+          y quiero que sea muy especial.<br><br>
+          No podría pedir otra persona,<br>
+          porque quiero pasarlo con<br>
+          <b>el amor de mi vida</b>.
+        </p>
+        <button onclick="next()">🥹</button>
+        `,
+        `
+        <h2>Última pregunta… 💜</h2>
+        <p>
+          Mañana te voy a dar una sorpresa<br>
+          pero hoy solo quiero saber una cosa:
+        </p>
+        <button onclick="next()">👉</button>
+        `,
+        `
+        <h2>¿Me acompañas mañana para pedirte ser mi valentine? 💘</h2>
+        <button onclick="celebrate()">Sí 💜🌷</button>
+        `
+      ];
+
+      card.innerHTML = screens[step];
+      step++;
+    }
+
+    function celebrate() {
+      document.getElementById("card").innerHTML = `
+        <h2>💜💜💜</h2>
+        <p>
+          Gracias por hacerme tan feliz.<br>
+          Te amo con todo mi corazón 🌷
+        </p>
+      `;
+
+      for (let i = 0; i < 120; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+        confetti.style.backgroundColor =
+          ["#9d4edd", "#c77dff", "#7b2cbf"][Math.floor(Math.random() * 3)];
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
